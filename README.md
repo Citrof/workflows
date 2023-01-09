@@ -4,7 +4,7 @@ Automated github workfows for this organization
 
 
 ## Variables
-The `API_TOKEN_GITHUB` needs to be set in the Secrets section of your repository options. You can retrieve the `API_TOKEN_GITHUB` here *(set the repo permissions)*.
+The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your repository options. You can retrieve the `API_TOKEN_GITHUB` [here](https://github.com/settings/tokens) (set the `repo` permissions).
 
 * source_file: The file or directory to be moved. Uses the same syntax as the `rsync` command. Incude the path for any files not in the repositories root directory.
 * destination_repo: The repository to place the file or directory in.
