@@ -21,7 +21,6 @@ fi
 OUTPUT_BRANCH="$INPUT_DESTINATION_BRANCH"
 
 CLONE_DIR=$(mktemp -d)
-CLONE_FILES=$CLONE_DIR/*
 
 echo "Cloning destination git repository"
 git config --global user.email "$INPUT_USER_EMAIL"
@@ -30,7 +29,7 @@ git clone --single-branch --branch $INPUT_DESTINATION_BRANCH "https://x-access-t
 
 echo "Copying contents to git repo"
 
-rm -rf "$CLONE_FILES"
+rm -rf "$CLONE_DIR"/*
 
 cd "$INPUT_SOURCE_FOLDER"
 for fileder in * 
