@@ -13,6 +13,12 @@ inputs:
   user_name:
     description: 'GitHub username for the commit'
     required: true
+  shared_folder:
+    description: 'Shared folder from the origin directory'
+    required: false
+  shared_name:
+    description: 'Shared folder from the origin directory'
+    required: false
   destination_branch:
     description: 'branch to push file to, defaults to main'
     required: false
