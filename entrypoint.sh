@@ -43,6 +43,7 @@ then
   INPUT_DESTINATION_BRANCH="main"
 fi
 OUTPUT_BRANCH="$INPUT_DESTINATION_BRANCH"
+
 # THE JOB
 #make a temp folder (this is the target repo)
 CLONE_DIR=$(mktemp -d)
@@ -55,14 +56,6 @@ git clone --single-branch --branch $INPUT_DESTINATION_BRANCH "https://x-access-t
 echo "Copying contents to git repo"
 #rm all contents of the target folder
 rm -rf "$CLONE_DIR"/*
-#go into the source folder 
-cd "$INPUT_SOURCE_FOLDER"
-for fileder in * 
-do 
-  # and copy the root files and folders from 
-  # the source folder to the target directory
-  cp -R "$fileder" "$CLONE_DIR"
-done
 #if no shared folder
 if [ -z "$INPUT_SHARED_FOLDER" ]
 then
@@ -72,6 +65,14 @@ else
   # then copy the shared folder to the target folder
   cp -R "$INPUT_SHARED_FOLDER" "$CLONE_DIR/$INPUT_SHARED_NAME" 
 fi
+#go into the source folder 
+cd "$INPUT_SOURCE_FOLDER"
+for fileder in * 
+do 
+  # and copy the root files and folders from 
+  # the source folder to the target directory
+  cp -R "$fileder" "$CLONE_DIR"
+done
 #go into the target folder
 cd "$CLONE_DIR"
 #if there is a destination branch
