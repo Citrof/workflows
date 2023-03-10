@@ -96,10 +96,11 @@ else
 fi
 
 #create PR stage -> main
-sudo apt-get update
-sudo apt-get install -y hub
+
 echo "Create PR stage to main"
 if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
 then
+  apt-get update
+  apt-get install -y hub
   hub --version
 fi
