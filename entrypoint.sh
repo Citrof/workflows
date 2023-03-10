@@ -96,11 +96,11 @@ else
 fi
 
 #create PR stage -> main
-
-echo "Create PR stage to main"
-if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
-then
-  apt-get update
-  apt-get install -y hub
-  hub --version
-fi
+# not working - ad :(
+# echo "Create PR stage to main"
+# if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
+# then
+#   apt-get update
+#   apt-get install -y hub
+#   hub --version
+# fi
