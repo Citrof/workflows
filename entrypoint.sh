@@ -99,5 +99,5 @@ fi
 echo "Create PR stage to main"
 if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
 then
-  hub pull-request -F pr-message.md
+  hub pull-request -F pr-message.md -b main -h stage
 fi
