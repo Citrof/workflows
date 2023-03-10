@@ -94,3 +94,20 @@ then
 else
   echo "No changes detected"
 fi
+
+#create PR stage -> main
+echo "Create PR stage to main"
+if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
+then
+  REPO_OWNER="Citrof"
+  REPO_NAME="$INPUT_DESTINATION_REPO"
+  SOURCE_BRANCH="$INPUT_DESTINATION_BRANCH"
+  DESTINATION_BRANCH="main"
+  PR_TITLE="Your Pull Request Title"
+  PR_BODY="Your Pull Request Description"
+  # Create a pull request using the GitHub API
+  curl -s -H "${AUTH_HEADER}" \
+   -X POST \
+   -d "{\"title\":\"${PR_TITLE}\",\"body\":\"${PR_BODY}\",\"head\":\"${REPO_OWNER}:${SOURCE_BRANCH}\",\"base\":\"${DESTINATION_BRANCH}\"}" \
+   "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/pulls"
+fi
