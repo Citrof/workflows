@@ -96,30 +96,26 @@ then
   git commit --message "$INPUT_COMMIT_MESSAGE"
   echo "Pushing git commit"
   git push -u origin HEAD:"$OUTPUT_BRANCH"
+  #create PR stage -> main
+  if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
+    echo "Create PR stage to main"
+    if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
+    then
+      #check if PR exists
+      PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
+      # if no PR request from stage to main
+      if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
+        # Fetch the latest changes from the main branch
+        #create PR
+        echo "Create PR stage to main"
+        hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+      else
+        #PR exists
+        echo "PR already exists"
+      fi
+    fi
+  fi
 else
   echo "No changes detected"
 fi
 
-#create PR stage -> main
-if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
-  echo "Create PR stage to main"
-  if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
-  then
-    #check if PR exists
-    PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
-    # if no PR request from stage to main
-    if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
-      # Fetch the latest changes from the main branch
-      TEST=$(git status)
-      echo "$TEST"
-      # #create PR
-      # echo "Create PR stage to main"
-      # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
-    else
-      #PR exists
-      echo "PR already exists"
-
-    fi
-   
-  fi
-fi
