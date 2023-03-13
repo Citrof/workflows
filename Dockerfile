@@ -16,5 +16,6 @@ apk add --no-cache git hub bash
 
 
 ADD entrypoint.sh /entrypoint.sh
+ADD pr-message.md /pr-message.md
 
 ENTRYPOINT [ "/entrypoint.sh"]
