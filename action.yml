@@ -32,9 +32,15 @@ inputs:
     description: 'Git server host, default github.com'
     required: false
     default: github.com
+  github_token:
+    description: GitHub token secret
+    required: false
+    default: ${{ github.token }}
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    GITHUB_TOKEN: ${{ inputs.github_token }}
   args:
     - ${{ inputs.source-file }}
     - ${{ inputs.destination-repo }}
@@ -45,7 +51,6 @@ runs:
     - ${{ inputs.commit-message }}
     - ${{ inputs.git-server }}
     - ${{ inputs.rename }}
-    - ${{ inputs.use-rsync }}
 branding:
   icon: 'git-commit'
   color: 'green'

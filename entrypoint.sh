@@ -101,10 +101,11 @@ else
 fi
 
 #create PR stage -> main
-# not working - ad :(
-echo "Create PR stage to main"
-if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
-then
-  git remote -v
-  hub pull-request -b main -h stage
+if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
+  echo "Create PR stage to main"
+  if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
+  then
+    git remote -v
+    hub pull-request -b main -h stage
+  fi
 fi
