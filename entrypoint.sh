@@ -106,7 +106,7 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
   then
     #check if PR exists
-    if hub api /repos/$INPUT_DESTINATION_REPO/pulls -f base=main -f head=stage | grep -q '"number":'; then
+    if hub pr list -b main -h stage | grep -q stage; then
       echo "Pull request already exists for branch stage"
     else
       #create PR
