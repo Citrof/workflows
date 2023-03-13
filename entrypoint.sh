@@ -112,11 +112,14 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
       # Fetch the latest changes from the main branch
       git fetch origin main
 
-      # Compare the main and stage branches using git log
-      git log --pretty=format:%H origin/main..origin/stage > /dev/null
+      # Get the SHA of the latest commit on the main branch
+      main_commit=$(git rev-parse origin/main)
 
-      # Check the exit code of the previous command
-      if [ $? -eq 0 ]; then
+      # Get the SHA of the latest commit on the stage branch
+      stage_commit=$(git rev-parse origin/stage)
+
+      # Check if the stage branch is ahead of the main branch
+      if [ "$main_commit" != "$stage_commit" ]; then
           echo "There are commits on the stage branch that are not on the main branch."
           echo "Please create a pull request to merge these changes into the main branch."
       else
