@@ -3,8 +3,9 @@
 set -e
 set -x
 
-export PATH=/usr/local/bin:${PATH}
+export PATH=$PATH:/usr/local/bin
 
+# Run the hub command here
 hub --version
 
 # THE CONFIG
