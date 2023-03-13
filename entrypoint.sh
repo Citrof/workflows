@@ -21,8 +21,18 @@ export PATH="/usr/local/bin:$PATH"
 # Remove the extracted files
 rm -rf hub-linux-amd64-2.14.2 hub.tgz
 
-# Run the hub command
-hub --version
+# # Run the hub command
+# hub --version
+
+# Add hub to the PATH
+export PATH=$PATH:/usr/local/bin
+
+# Test hub installation
+/usr/local/bin/hub --version
+
+# Run the command passed to the entrypoint
+exec "$@"
+
 
 # THE CONFIG
 # if no source folder
