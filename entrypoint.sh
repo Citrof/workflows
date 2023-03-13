@@ -107,6 +107,6 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   then
     git remote -v
     cat /pr-message.md
-    hub pull-request -F pr-message.md -b main -h stage
+    hub pull-request -F /pr-message.md -b main -h stage
   fi
 fi
