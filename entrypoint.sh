@@ -105,7 +105,6 @@ then
       PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
       # if no PR request from stage to main
       if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
-        # Fetch the latest changes from the main branch
         #create PR
         echo "Create PR stage to main"
         hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
