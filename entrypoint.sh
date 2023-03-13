@@ -117,7 +117,11 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
       echo "$PR_LIST"
 
       PR_LIST=$(hub pr list -b main -h some-branch)
-      echo "$PR_LIST"
+      if [ -z "$PR_LIST" ] ; then
+        #No PR exists in for stage to main
+        echo "No PR exists in for stage to main"
+      fi
+
     fi
     # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
   fi
