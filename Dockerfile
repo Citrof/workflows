@@ -13,6 +13,10 @@ RUN apk add git openssh-client ca-certificates && \
     /tmp/hub-linux-amd64-2.14.2/install && \
     rm -rf /tmp/hub-linux-amd64-2.14.2
 
+ENV PATH="/usr/local/bin:${PATH}"
+
+CMD ["hub", "--version"]
+
 ADD entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
