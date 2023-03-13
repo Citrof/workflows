@@ -106,7 +106,7 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
   then
     #check if PR exists
-    PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage)
+    PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
     # if no PR request from stage to main
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
       #create PR
