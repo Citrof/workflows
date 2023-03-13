@@ -110,7 +110,9 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
       echo "Pull request already exists for branch stage"
     else
       #create PR
-      hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+      # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+      echo Create PR
+      hub pr list -b main -h stage | grep -q stage
     fi
     # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
   fi
