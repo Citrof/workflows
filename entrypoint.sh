@@ -106,21 +106,14 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
   then
     #check if PR exists
-    if hub pr list -b main -h stage | grep -q stage; then
-      echo "Pull request already exists for branch stage"
-    else
+    PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage)
+    # if no PR request from stage to main
+    if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
       #create PR
-      # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
-      echo Create PR
-      # hub pr list -b main -h stage | grep -q stage
-      PR_LIST=$(hub pr list -b main -h stage)
-      echo "$PR_LIST"
-
-      PR_LIST=$(hub pr list -b main -h some-branch)
-      if [ -z "$PR_LIST" ] ; then
-        #No PR exists in for stage to main
-        echo "No PR exists in for stage to main"
-      fi
+      echo "Create PR stage to main"
+    else
+      #PR exists
+      echo "PR already exists"
 
     fi
     # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
