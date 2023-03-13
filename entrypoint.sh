@@ -105,6 +105,13 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   echo "Create PR stage to main"
   if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
   then
-    hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+    #check if PR exists
+    if hub api --silent /repos/$INPUT_DESTINATION_REPO/pulls -f base=main -f head=stage | grep -q '"number":'; then
+      echo "Pull request already exists for branch stage"
+    else
+      #create PR
+      hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+    fi
+    # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
   fi
 fi
