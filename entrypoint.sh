@@ -106,6 +106,6 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
   if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
   then
     git remote -v
-    hub pull-request -b main -h stage
+    hub pull-request -F pr-message.md -b main -h stage
   fi
 fi
