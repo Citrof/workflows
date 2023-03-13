@@ -3,35 +3,9 @@
 set -e
 set -x
 
-# Download the hub binary
-curl -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-amd64-2.14.2.tgz -o hub.tgz
+# any other commands to run before using hub
 
-# Extract the hub binary
-tar -xvf hub.tgz
-
-# Make the hub binary executable
-chmod +x hub-linux-amd64-2.14.2/bin/hub
-
-# Move the hub binary to the bin directory
-mv hub-linux-amd64-2.14.2/bin/hub /usr/local/bin/
-
-# Add the bin directory to the PATH environment variable
-export PATH="/usr/local/bin:$PATH"
-
-# Remove the extracted files
-rm -rf hub-linux-amd64-2.14.2 hub.tgz
-
-# # Run the hub command
-# hub --version
-
-# Add hub to the PATH
-export PATH=$PATH:/usr/local/bin
-
-# Test hub installation
-/usr/local/bin/hub --version
-
-# Run the command passed to the entrypoint
-exec "$@"
+hub --version
 
 
 # THE CONFIG
