@@ -5,6 +5,10 @@ set -x
 
 export PATH=$PATH:/usr/local/bin
 
+# Add the hub binary directory to the PATH
+export PATH=$PATH:/usr/local/bin/hub-linux-amd64-2.14.2/bin
+
+
 # Run the hub command here
 hub --version
 
