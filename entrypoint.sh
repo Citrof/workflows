@@ -109,19 +109,14 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
     PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
     # if no PR request from stage to main
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
-      echo $(git remote -v)
-      # Fetch the latest changes.
-      echo $(git fetch origin)
-      echo $(git branch -a)
+      # Fetch the latest changes from the main branch
+      git fetch origin main
 
-      # Get the SHA of the latest commit on the main branch
-      main_commit=$(git rev-parse main)
+      # Compare the main and stage branches using git log
+      git log --pretty=format:%H origin/main..origin/stage > /dev/null
 
-      # Get the SHA of the latest commit on the stage branch
-      stage_commit=$(git rev-parse stage)
-
-      # Check if the stage branch is ahead of the main branch
-      if [ "$main_commit" != "$stage_commit" ]; then
+      # Check the exit code of the previous command
+      if [ $? -eq 0 ]; then
           echo "There are commits on the stage branch that are not on the main branch."
           echo "Please create a pull request to merge these changes into the main branch."
       else
