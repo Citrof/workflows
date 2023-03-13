@@ -111,11 +111,12 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
       #create PR
       echo "Create PR stage to main"
+      hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
     else
       #PR exists
       echo "PR already exists"
 
     fi
-    # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+   
   fi
 fi
