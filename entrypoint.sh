@@ -109,10 +109,10 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
     PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
     # if no PR request from stage to main
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
-      git remote -v
+      echo $(git remote -v)
       # Fetch the latest changes.
-      git fetch origin
-      git branch -a
+      echo $(git fetch origin)
+      echo $(git branch -a)
 
       # Get the SHA of the latest commit on the main branch
       main_commit=$(git rev-parse main)
