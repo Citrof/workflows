@@ -112,7 +112,9 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
       #create PR
       # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
       echo Create PR
-      hub pr list -b main -h stage | grep -q stage
+      # hub pr list -b main -h stage | grep -q stage
+      PR_LIST=$(hub pr list -b main -h stage)
+      echo "$PR_LIST"
     fi
     # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
   fi
