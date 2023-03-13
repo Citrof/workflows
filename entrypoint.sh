@@ -113,10 +113,12 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
       git fetch origin main
 
       # Get the SHA of the latest commit on the main branch
-      main_commit=$(git rev-parse --no-pager origin/main)
+      git checkout main
+      main_commit=$(git rev-parse --short HEAD)
 
       # Get the SHA of the latest commit on the stage branch
-      stage_commit=$(git rev-parse --no-pager origin/stage)
+      git checkout stage
+      stage_commit=$(git rev-parse --short HEAD)
 
       # Check if the stage branch is ahead of the main branch
       if [ "$main_commit" != "$stage_commit" ]; then
