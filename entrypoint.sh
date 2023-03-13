@@ -3,6 +3,10 @@
 set -e
 set -x
 
+export PATH=/usr/local/bin:${PATH}
+
+hub --version
+
 # THE CONFIG
 # if no source folder
 if [ -z "$INPUT_SOURCE_FOLDER" ]

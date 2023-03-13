@@ -16,8 +16,6 @@ RUN apk add --no-cache curl git openssh && \
 
 ENV PATH="/usr/local/bin:${PATH}"
 
-CMD ["hub", "--version"]
-
 ADD entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh"]
