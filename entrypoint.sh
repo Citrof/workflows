@@ -9,6 +9,9 @@ curl -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-amd64-
 # Extract the hub binary
 tar -xvf hub.tgz
 
+# Make the hub binary executable
+chmod +x hub-linux-amd64-2.14.2/bin/hub
+
 # Move the hub binary to the bin directory
 mv hub-linux-amd64-2.14.2/bin/hub /usr/local/bin/
 
