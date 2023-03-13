@@ -109,9 +109,26 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
     PR_EXISTS_STAGE_TO_MAIN=$(hub pr list -b main -h stage --state open)
     # if no PR request from stage to main
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
-      #create PR
-      echo "Create PR stage to main"
-      hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
+
+      # Fetch the latest changes from the main branch
+      git fetch origin main
+
+      # Get the SHA of the latest commit on the main branch
+      main_commit=$(git rev-parse origin/main)
+
+      # Get the SHA of the latest commit on the stage branch
+      stage_commit=$(git rev-parse origin/stage)
+
+      # Check if the stage branch is ahead of the main branch
+      if [ "$main_commit" != "$stage_commit" ]; then
+          echo "There are commits on the stage branch that are not on the main branch."
+          echo "Please create a pull request to merge these changes into the main branch."
+      else
+          echo "The stage branch is up to date with the main branch."
+      fi
+      # #create PR
+      # echo "Create PR stage to main"
+      # hub pull-request --message $INPUT_COMMIT_MESSAGE -b main -h stage
     else
       #PR exists
       echo "PR already exists"
