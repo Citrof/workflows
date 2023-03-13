@@ -6,6 +6,8 @@ RUN apk update && \
     
 RUN apk add curl
 
+RUN apk add bash
+
 RUN apk add git openssh-client ca-certificates && \
     curl -sSL https://github.com/github/hub/releases/download/v2.14.2/hub-linux-amd64-2.14.2.tgz | tar -xzC /tmp/ && \
     /tmp/hub-linux-amd64-2.14.2/install && \
