@@ -8,6 +8,9 @@ export PATH=$PATH:/usr/local/bin
 # Add the hub binary directory to the PATH
 export PATH=$PATH:/usr/local/bin/hub-linux-amd64-2.14.2/bin
 
+# Make the hub binary file executable
+chmod +x /usr/local/bin/hub-linux-amd64-2.14.2/bin/hub
+
 
 # Run the hub command here
 hub --version
