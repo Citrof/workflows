@@ -105,5 +105,6 @@ fi
 echo "Create PR stage to main"
 if [[ "$INPUT_DESTINATION_BRANCH" == "stage" ]]
 then
-  hub --version
+  git remote -v
+  hub pull-request -b main -h stage
 fi
