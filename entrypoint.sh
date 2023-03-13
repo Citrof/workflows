@@ -110,14 +110,14 @@ if [ ! -z "$INPUT_GITHUB_TOKEN" ] ; then
     # if no PR request from stage to main
     if [ -z "$PR_EXISTS_STAGE_TO_MAIN" ] ; then
 
-      # Fetch the latest changes from the main branch
-      git fetch origin main
+      # Fetch the latest changes.
+      git fetch
 
       # Get the SHA of the latest commit on the main branch
-      main_commit=$(git rev-parse origin/main)
+      main_commit=$(git rev-parse main)
 
       # Get the SHA of the latest commit on the stage branch
-      stage_commit=$(git rev-parse origin/stage)
+      stage_commit=$(git rev-parse stage)
 
       # Check if the stage branch is ahead of the main branch
       if [ "$main_commit" != "$stage_commit" ]; then
