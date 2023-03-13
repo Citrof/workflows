@@ -4,7 +4,7 @@ RUN apk update && \
     apk upgrade && \
     apk add git rsync 
 
-RUN apk add --no-cache wget
+RUN apk add wget
 
 RUN wget -O /tmp/hub.tgz https://github.com/github/hub/releases/download/v2.15.1/hub-linux-amd64-2.15.1.tgz && \
     tar -xzC /tmp/ -f /tmp/hub.tgz && \
