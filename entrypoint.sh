@@ -12,6 +12,9 @@ tar -xvf hub.tgz
 # Move the hub binary to the bin directory
 mv hub-linux-amd64-2.14.2/bin/hub /usr/local/bin/
 
+# Add the bin directory to the PATH environment variable
+export PATH="/usr/local/bin:$PATH"
+
 # Remove the extracted files
 rm -rf hub-linux-amd64-2.14.2 hub.tgz
 
